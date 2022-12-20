@@ -1,0 +1,26 @@
+int RicercaDicotomica(int vett[], int dimVett, int valRicerca){
+        int i,j,temp=dimVett,pos=dimVett-1;
+
+        if(valRicerca<vett[0]||valRicerca>vett[pos]){ return -1; }
+
+        pos/=2;
+
+        j=(log10(dimVett)/log10(2));
+        j++;
+ 
+        for(i=0;i<=j;i++){  
+            if(dimVett%2!=0){dimVett++;}
+            dimVett/=2;
+            
+            if(valRicerca==vett[pos]){
+                return pos;
+            }else if(valRicerca<vett[pos]){
+                pos-=dimVett;
+                if(pos<0){pos=0;}
+            }else{
+                pos+=dimVett;
+                if(pos>=temp){pos=temp-1;}
+            }
+        }
+        return -1;
+    }
